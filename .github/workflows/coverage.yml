@@ -1,0 +1,32 @@
+name: CI with Code Coverage
+
+on:
+  push: # Trigger on every push
+    branches:
+      - '**' # All branches. Replace with specific branches if needed (e.g., 'main')
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java (example for Java projects)
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+
+      # Step 3: Run build (example for Maven)
+      - name: Build and run tests with JaCoCo
+        run: mvn clean verify
+
+      - name: Upload JaCoCo coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: target/site/jacoco
+
