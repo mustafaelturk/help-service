@@ -1,9 +1,12 @@
 name: CI with Code Coverage
 
 on:
-  push: # Trigger on every push
+  push: # Trigger on push
     branches:
-      - '**' # All branches. Replace with specific branches if needed (e.g., 'main')
+      - '**' # Matches all branches; customize if needed (e.g., 'main', 'dev')
+  pull_request: # Trigger on pull requests
+    branches:
+      - '**' # Matches all branches where PRs are opened; customize if needed
 
 jobs:
   build:
